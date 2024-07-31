@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2,
+	"name": "go2inv",
+	"version": "1.0",
+
+	"description": "Redirect to a preferred Invidious instance when a YouTube link is clicked.",
+	
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://www.youtube.com/watch?v=*"
+	],
+
+	"background": {
+		"scripts": ["go2inv.js"],
+		"persistent": false,
+		"type": "module"
+	}
+}
