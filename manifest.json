@@ -11,6 +11,11 @@
 		"https://www.youtube.com/watch?v=*"
 	],
 
+	"browser_action": {
+		"default_title": "go2inv",
+		"default_popup": "popup.html"
+	},
+
 	"background": {
 		"scripts": ["go2inv.js"],
 		"persistent": false,
