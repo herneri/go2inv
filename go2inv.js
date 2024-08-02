@@ -14,10 +14,16 @@
 	limitations under the License.
 */
 
-var preferred_instance = "inv.tux.pizza";
+var preferred_instance = null;
+
+/* Recieve the preferred instance that is selected in the popup */
+function get_popup_message(request, sender) {
+	preferred_instance = request.instance;
+	return;
+}
 
 function format_yt_url(yt_url, invidious_instance) {
-    var formatted_url = "https://" + invidious_instance + "/watch?v=";
+    var formatted_url = invidious_instance + "/watch?v=";
     var video_id = yt_url.split("=")[1];
 
     return formatted_url + video_id;
@@ -32,4 +38,5 @@ function redirect_to_invidious(requestData) {
 	};
 }
 
+browser.runtime.onMessage.addListener(get_popup_message);
 browser.webRequest.onBeforeRequest.addListener(redirect_to_invidious, { "urls": ["https://www.youtube.com/watch?v=*"] }, [ "blocking" ]);
