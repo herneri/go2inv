@@ -34,12 +34,20 @@ async function get_invidious_data() {
 		if (json[i][1]["type"] != "https")
 			continue;
 
-		const new_instance = document.createElement("li");
+		const new_instance = document.createElement("tr");
+		const name = document.createElement("td");
+		const region = document.createElement("td");
+		const instance_status = document.createElement("td");
 
-		new_instance.id = json[i][1]["uri"];
-		new_instance.innerHTML = "Name: " + json[i][0] + "<br/>" +
-		"Region: " + json[i][1]["region"] + "<br/>";
 
+		name.innerHTML = json[i][0]
+		name.id = json[i][1]["monitor"]["url"];
+		region.innerHTML = json[i][1]["region"];
+		instance_status.innerHTML = json[i][1]["monitor"]["last_status"];
+
+		new_instance.appendChild(name);
+		new_instance.appendChild(region);
+		new_instance.appendChild(instance_status);
 		list_html.appendChild(new_instance);
 	}
 
@@ -48,6 +56,9 @@ async function get_invidious_data() {
 
 get_invidious_data();
 document.addEventListener("click", (e) => {
+	if (e.target.id == "")
+		return;
+
 	preferred_instance = e.target.id;
 	instance_html.innerHTML = "Current Instance: " + preferred_instance;
 
