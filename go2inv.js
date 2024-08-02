@@ -16,7 +16,7 @@
 
 var preferred_instance = null;
 
-/* Recieve the preferred instance that is selected in the popup */
+/* Receive the preferred instance that is selected in the popup */
 function get_popup_message(request, sender) {
 	preferred_instance = request.instance;
 	return;
